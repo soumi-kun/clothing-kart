@@ -1,0 +1,9 @@
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .chart {
+    width: 48%; /* Adjust as needed, leaving some space for margins */
+    margin-bottom: 20px; /* Optional: Add some bottom margin for spacing between charts */
+  }

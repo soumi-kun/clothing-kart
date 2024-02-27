@@ -1,0 +1,10 @@
+version: ‘3.5’
+
+services:
+  diy-kart:
+    image: ${DOCKER_REGISTRY-}diykartapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4200:80

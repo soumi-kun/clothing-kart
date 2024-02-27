@@ -1,0 +1,84 @@
+<section>
+    <div class="bg-holder overlay overlay-light" style="background-image:url(assets/images/header-bg.png);background-size:cover;"></div>
+    <div class="container">
+        <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+            <input type="hidden" name="id" [value]="service.product.id" />
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control form-control-lg" placeholder="Full Name" name="name"
+                    #name="ngModel" [(ngModel)]="service.product.name"
+                    required [class.invalid]="name.invalid && name.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control form-control-lg" placeholder="description" name="description"
+                    #description="ngModel" [(ngModel)]="service.product.description"
+                    required maxlength="1000" [class.invalid]="description.invalid && description.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Price</label>
+                <input class="form-control form-control-lg" placeholder="price" name="price"
+                    #price="ngModel" type="number" [(ngModel)]="service.product.price"
+                    required maxlength="10" [class.invalid]="price.invalid && price.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Picture File Name</label>
+                    <input class="form-control form-control-lg" placeholder="Picture File Name" name="pictureFileName"
+                        #pictureFileName="ngModel" [(ngModel)]="service.product.pictureFileName"
+                        required [class.invalid]="pictureFileName.invalid && pictureFileName.touched">
+            </div>
+            <div class="form-group">
+                <label>Picture Uri</label>
+                    <input class="form-control form-control-lg" placeholder="Picture Uri" name="pictureUri"
+                    #pictureUri="ngModel" [(ngModel)]="service.product.pictureUri"
+                    required [class.invalid]="pictureUri.invalid && pictureUri.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Catalog Type</label>
+                    <input class="form-control form-control-lg" placeholder="Catalog Type" name="catalogTypeId"
+                        #catalogTypeId="ngModel" type="number" [(ngModel)]="service.product.catalogTypeId"
+                        required [class.invalid]="catalogTypeId.invalid && catalogTypeId.touched">
+            </div>
+            <div class="form-group">
+                <label>Catalog Brand</label>
+                    <input class="form-control form-control-lg" placeholder="Catalog Brand" name="catalogBrandId"
+                        #catalogBrandId="ngModel" type="number" [(ngModel)]="service.product.catalogBrandId"
+                        required [class.invalid]="catalogBrandId.invalid && catalogBrandId.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Available Stock</label>
+                    <input class="form-control form-control-lg" placeholder="Available Stock" name="availableStock"
+                        #availableStock="ngModel" type="number" [(ngModel)]="service.product.availableStock"
+                        required [class.invalid]="availableStock.invalid && availableStock.touched">
+            </div>
+            <div class="form-group">
+                    <label>Restock Threshold</label>
+                    <input class="form-control form-control-lg" placeholder="Restock Threshold" name="restockThreshold"
+                        #restockThreshold="ngModel" type="number" [(ngModel)]="service.product.restockThreshold"
+                        required [class.invalid]="restockThreshold.invalid && restockThreshold.touched">
+            </div>
+
+            <div class="form-group">
+                <label>Max Stock Threshold</label>
+                    <input class="form-control form-control-lg" placeholder="Max Stock Threshold" name="maxStockThreshold"
+                        #maxStockThreshold="ngModel" type="number" [(ngModel)]="service.product.maxStockThreshold"
+                        required [class.invalid]="maxStockThreshold.invalid && maxStockThreshold.touched">
+            </div>
+            <div class="form-group">
+                <label>Reorder</label>
+                    <input class="form-control form-control-lg" placeholder="Reorder" name="onReorder"
+                        #onReorder="ngModel" [(ngModel)]="service.product.onReorder"
+                        required [class.invalid]="onReorder.invalid && onReorder.touched">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
