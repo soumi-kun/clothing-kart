@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -8,42 +9,57 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 export class ProductDashboardComponent implements OnInit {
 
-  products: any;
-  salesData: any;
-  stockData: any;
-  dateFilter: string = 'all'; // You can expand this with more filters
-  colorSchemeSales = { name: 'cool' };
-  colorSchemetock = { name: 'natural' };
+  products: Product[] = [];
+  productsStockData: { name: string, value: number }[] = [];
+  displayedProductsStockData: { name: string, value: number }[] = [];
+  productSalesData: { name: string, value: number }[] = [];
+  displayedProductsSalesData: { name: string, value: number }[] = [];
+  currentPage = 1;
+  productsPerPage = 5;
+
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    // this.products = this.productService.getProduct();
-    this.updateChartData();
+    
+    this.getProducts();
   }
 
-  updateChartData(): void {
-    // Implement logic to fetch sales and stock data based on the dateFilter
-    this.salesData = [
-      { name: 'January', value: 10 },
-      { name: 'February', value: 15 },
-      { name: 'March', value: 25 },
-      { name: 'April', value: 20 },
-      { name: 'May', value: 30 },
-      
-    ];
+  getProducts(){
+    this.productService.getProductsList().subscribe((result) => {
+      this.products = result as Product[];
+      this.productsStockData = this.products.map(product => ({
+        name: product.name,
+        value: product.availableStock
+      }));
+      this.productSalesData = this.products.map(product => ({
+        name: product.name,
+        value: product.maxStockThreshold - product.availableStock,
+      }));
+      this.updateDisplayedProducts();
 
-    this.stockData = [
-      { name: 'January', value: 50 },
-      { name: 'February', value: 40 },
-      { name: 'March', value: 30 },
-      { name: 'April', value: 45 },
-      { name: 'May', value: 60 },
-    ];
+    },
+    ()=>{
+      alert("Internal Server Error.There was an error retrieving your request. Please contact support");
+    }
+    );
   }
 
-  applyFilter(filter: string): void {
-    this.dateFilter = filter;
-    this.updateChartData();
+  updateDisplayedProducts() {
+    const startIndex = (this.currentPage - 1) * this.productsPerPage;
+    const endIndex = startIndex + this.productsPerPage;
+    this.displayedProductsStockData = this.productsStockData.slice(startIndex, endIndex);
+    this.displayedProductsSalesData = this.productSalesData.slice(startIndex, endIndex);
   }
+
+  nextPage() {
+    const totalPages = Math.ceil(this.productsStockData.length / this.productsPerPage);
+    this.currentPage = (this.currentPage % totalPages) + 1;
+    this.updateDisplayedProducts();
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.productsStockData.length / this.productsPerPage);
+  }
+
 }

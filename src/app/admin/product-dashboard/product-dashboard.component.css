@@ -7,3 +7,13 @@
     width: 48%; /* Adjust as needed, leaving some space for margins */
     margin-bottom: 20px; /* Optional: Add some bottom margin for spacing between charts */
   }
+
+  .pagination {
+    margin-top: 20px;
+  }
+  
+  button {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
