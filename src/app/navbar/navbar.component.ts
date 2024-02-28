@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { AuthenticationResult } from '@azure/msal-browser';
 import { ProductService } from '../shared/services/product.service';
+import { CartService } from '../shared/services/cart.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,17 @@ import { ProductService } from '../shared/services/product.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  count$: Observable<number> | undefined;
+  
   constructor(
     private msalService: MsalService,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
+
   ) { }
 
   ngOnInit(): void {
+    this.count$ = this.cartService.getCount();
   }
 
   isUserLoggedIn():boolean

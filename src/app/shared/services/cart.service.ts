@@ -32,6 +32,11 @@ export class CartService{
         );
     }
 
+    getCartItemsCount(): number{
+      const count = this.shoppingCart$.value.items.length;
+      return count;
+    }
+
     getSubTotal(): Observable<number> {
         return this.shoppingCart$.pipe(
           map((shoppingCart) => {
@@ -62,6 +67,11 @@ export class CartService{
         });
         this.setShoppingCart(shoppingCart);
     }
+    addQuantity(item: Item) {
+      const shoppingCart = { ...this.shoppingCart$.value };
+      shoppingCart.items.push(item);
+      this.setShoppingCart(shoppingCart);
+  }
 
     deleteItem(deleteItem: Item) {
         const shoppingCart = { ...this.shoppingCart$.value };
