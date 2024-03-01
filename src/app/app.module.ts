@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalBroadcastService, MsalGuard, MsalGuardAuthRequest, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalModule, MsalService } from '@azure/msal-angular';
 import { BrowserCacheLocation, IPublicClientApplication, InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 export function MSALInstanceFactory(): IPublicClientApplication{
   return new PublicClientApplication({
@@ -60,7 +61,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration{
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    MsalModule
+    MsalModule,
+    FormsModule
     
   ],
   providers: [

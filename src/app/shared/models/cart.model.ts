@@ -14,4 +14,5 @@ export interface ShoppingCart {
     id: string;
     title: string;
     price: number;
+    url: string;
   }

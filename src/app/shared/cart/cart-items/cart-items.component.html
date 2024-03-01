@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-3">
-              <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image">
+              <img class="img-fluid" [src]=item.sku.url alt="sample image">
             </div>
             <div class="col-6 col-md-7">
               <h5>{{item.sku.title}}</h5>
@@ -19,7 +19,7 @@
                   </select>
                 </li>
                 <li class="nav-item ms-4">
-                    <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>                </li>
+                    <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button></li>
               </ul>
             </div>
             <div class="col-3 col-md-2">

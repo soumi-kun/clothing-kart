@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import{ HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from "../models/product.model";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -30,12 +30,8 @@ export class ProductService{
         );
     }
 
-    getProduct() {
-        return [
-          { id: 1, name: 'T-Shirt', description: 'Comfortable cotton t-shirt', price: 19.99 },
-          { id: 2, name: 'Jeans', description: 'Classic blue jeans', price: 49.99 },
-          // Add more products as needed
-        ];
+    getProduct(): Observable<Product[]> {
+        return of(this.productList);
       }
 
     getProductsList(): Observable<Product[]> {

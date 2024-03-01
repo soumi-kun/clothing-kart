@@ -42,7 +42,8 @@ export class ProductComponent implements OnInit {
       sku: {
         id: product.id.toString(),
         title: product.name,
-        price: parseFloat(product.price)
+        price: parseFloat(product.price),
+        url: product.pictureUri
       }
       }));
       this.cartService.addQuantity(this.item[0]);

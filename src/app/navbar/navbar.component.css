@@ -8,3 +8,29 @@
     border-radius: 50%;
     font-size: 0.8em;
   }
+  
+  .search-results {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    width: 40%;
+    background-color: white; /* Set a background color to make it stand out */
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    z-index: 100; /* Ensure it appears on top of other elements */
+  }
+  
+  .product-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .product-list li {
+    padding: 8px;
+    border-bottom: 1px solid #eee; /* Add a border between each product item */
+  }
+  
+  .product-list li:last-child {
+    border-bottom: none; /* Remove border from the last item to avoid extra line */
+  }
